@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-group {
+    @apply mb-3;
+}
+
+.input-label-icon {
+    @apply flex items-center group border transition border-gray-5 p-2 focus-within:border-gray-3 rounded-lg;
+}
+
+.input-label-icon input {
+     @apply pl-2 text-gray-6 outline-none;
+}
+
+.input-label-icon svg {
+    @apply fill-current text-gray-3 w-4 h-4 md:w-5 md:h-5;
+}
