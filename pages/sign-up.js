@@ -52,22 +52,22 @@ export default function SignUp() {
                     <div className="mt-5">
                         <ul className="flex items-center mb-3">
                             <li className="mr-5">
-                                <button>
+                                <button className="outline-none focus:outline-none">
                                     <img src="/Google.svg" />
                                 </button>
                             </li>
                             <li className="mr-5">
-                                <button>
+                                <button className="outline-none focus:outline-none">
                                     <img src="/Facebook.svg" />
                                 </button>
                             </li>
                             <li className="mr-5">
-                                <button>
+                                <button className="outline-none focus:outline-none">
                                     <img src="/Twitter.svg" />
                                 </button>
                             </li>
                             <li className="mr-5">
-                                <button>
+                                <button className="outline-none focus:outline-none">
                                     <img src="/Github.svg" />
                                 </button>
                             </li>
