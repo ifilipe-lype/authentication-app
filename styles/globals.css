@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply dark:bg-gray-dark;
+}
+
 .input-group {
     @apply mb-3;
 }
@@ -11,11 +15,11 @@
 }
 
 .input-label-icon input {
-     @apply pl-2 cursor-pointer text-gray-6 outline-none;
+     @apply pl-2 text-gray-6 outline-none bg-transparent;
 }
 
 .input-label-icon svg {
-    @apply fill-current text-gray-3 w-4 h-4 md:w-5 md:h-5;
+    @apply fill-current text-gray-3 cursor-pointer w-4 h-4 md:w-5 md:h-5;
 }
 
 .btn-submit {
