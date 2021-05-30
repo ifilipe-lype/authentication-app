@@ -11,9 +11,13 @@
 }
 
 .input-label-icon input {
-     @apply pl-2 text-gray-6 outline-none;
+     @apply pl-2 cursor-pointer text-gray-6 outline-none;
 }
 
 .input-label-icon svg {
     @apply fill-current text-gray-3 w-4 h-4 md:w-5 md:h-5;
+}
+
+.btn-submit {
+    @apply w-full mt-3 p-2 bg-blue-1 text-white rounded-lg;
 }

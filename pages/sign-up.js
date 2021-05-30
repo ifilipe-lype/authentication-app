@@ -41,9 +41,9 @@ export default function SignUp() {
                             </label>
                         </div>
 
-                        <button type="submit" className="w-full mt-3 p-2 bg-blue-1 text-white rounded-lg">
+                        <button type="submit" className="btn-submit">
                             Start coding now
-                            </button>
+                        </button>
                     </form>
                 </div>
 
