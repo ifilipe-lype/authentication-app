@@ -15,7 +15,7 @@ body {
 }
 
 .input-label-icon input {
-     @apply pl-2 text-gray-6 outline-none bg-transparent;
+     @apply pl-2 text-gray-6 dark:text-gray-5 outline-none bg-transparent;
 }
 
 .input-label-icon svg {
