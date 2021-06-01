@@ -7,9 +7,25 @@ export default function SignUp() {
     const [isDark, setIsDark] = useState(false);
 
     const [error, setError] = useState("");
+    const [isSubmting, setIsSubmting] = useState(false);
 
     function handleSubmit(values){
-        console.log(values)
+        setIsSubmting(true);
+        setError("");
+
+        const request = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if(Math.floor(Math.random() * 11) % 2) resolve("done");
+                reject(new Error("Some Error here!"));
+            }, 2500)
+        });
+
+        request.then((result) => {
+            setIsSubmting(false);
+        }).catch(e => {
+            setIsSubmting(false);
+            setError(e.message);
+        })
     }
 
     useEffect(() => {
@@ -60,7 +76,7 @@ export default function SignUp() {
                             </div>
                         )
                     }
-                    <SignUpForm postSignUp={handleSubmit} />
+                    <SignUpForm isSubmting={isSubmting} postSignUp={handleSubmit} />
                 </div>
 
                 <footer className="flex flex-col items-center justify-center">
