@@ -3,10 +3,9 @@ import Head from "next/head";
 
 import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
-import { makeApiCall } from "../helpers/api-helper";
-
-import SignUpForm from "../components/signup-form";
+import LoginForm from "../components/login-form";
 import SocialLogins from "../components/social-logins";
+import { makeApiCall } from "../helpers/api-helper";
 
 export default function SignUp() {
     const { theme, setTheme } = useTheme();
@@ -18,11 +17,11 @@ export default function SignUp() {
     async function handleSubmit(values) {
         setIsSubmting(true);
         setError("");
-
+        
         try {
             const data = await makeApiCall({
+                route: "auth/signin",
                 method: "POST",
-                route: "auth/signup",
                 body: values
             });
 
@@ -51,7 +50,7 @@ export default function SignUp() {
     return (
         <>
             <Head>
-                <title>Auth App - Register</title>
+                <title>Auth App - Login</title>
             </Head>
             <main className="container px-5 mx-auto lg:px-0 md:w-full flex flex-col py-8 items-center justify-center min-h-screen w-full">
                 <section className="max-w-md w-full rounded-2xl md:py-6 md:px-5 lg:py-12 lg:px-10 md:border">
@@ -71,11 +70,8 @@ export default function SignUp() {
                             </button>
                         </div>
                         <h3 className="text-lg font-semibold leading-tight mt-4 md:mt-8">
-                            Join thousands of learners from around the world
+                            Login
                         </h3>
-                        <p className="mt-3 text-base leading-tight">
-                            Master web development by making real-life projects. There are mutliple paths for you to choose.
-                        </p>
                     </header>
                     <div className="my-8">
                         {
@@ -85,7 +81,7 @@ export default function SignUp() {
                                 </div>
                             )
                         }
-                        <SignUpForm isSubmting={isSubmting} postSignUp={handleSubmit} />
+                        <LoginForm isSubmting={isSubmting} postLogin={handleSubmit} />
                     </div>
 
                     <footer className="flex flex-col items-center justify-center">
@@ -94,8 +90,8 @@ export default function SignUp() {
                             <SocialLogins />
                         </div>
                         <span className="text-sm text-gray-3">
-                            Already a member ?
-                        <Link href="/login"><a className="text-blue-1"> Login</a></Link>
+                            Don't have an account yet ?
+                        <Link href="/sign-up"><a className="text-blue-1"> Register</a></Link>
                         </span>
                     </footer>
                 </section>
