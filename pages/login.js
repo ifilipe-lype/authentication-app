@@ -76,7 +76,7 @@ export default function SignUp() {
                     <div className="my-8">
                         {
                             error && (
-                                <div className="mb-4 font-normal text-red-400">
+                                <div className="mb-4 text-sm font-normal text-red-400">
                                     <p>{error}</p>
                                 </div>
                             )
