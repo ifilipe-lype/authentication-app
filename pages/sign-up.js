@@ -8,15 +8,8 @@ export default function SignUp() {
 
     const [error, setError] = useState("");
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    function handleSubmit(e){
-        e.preventDefault();
-        console.log({
-            name, email, password
-        })
+    function handleSubmit(values){
+        console.log(values)
     }
 
     useEffect(() => {
@@ -67,7 +60,7 @@ export default function SignUp() {
                             </div>
                         )
                     }
-                    <SignUpForm />
+                    <SignUpForm handleSubmit={handleSubmit} />
                 </div>
 
                 <footer className="flex flex-col items-center justify-center">
