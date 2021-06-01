@@ -3,6 +3,8 @@ import Head from "next/head";
 
 import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
+import { makeApiCall } from "../helpers/api-helper";
+
 import SignUpForm from "../components/signup-form";
 import SocialLogins from "../components/social-logins";
 
@@ -18,18 +20,12 @@ export default function SignUp() {
         setError("");
 
         try {
-            const res = await fetch("/api/auth/signup", {
+            const data = await makeApiCall({
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(values)
+                route: "auth/signup",
+                body: values
             });
 
-            if (res.status === 500) throw new Error("Network error, checks your internet connection!");
-
-            let data = await res.json();
-            if (data.error) throw new Error(data.error);
             setIsSubmting(false);
         } catch (e) {
             setIsSubmting(false);
@@ -84,7 +80,7 @@ export default function SignUp() {
                     <div className="my-8">
                         {
                             error && (
-                                <div className="mb-4 font-normal text-red-400">
+                                <div className="mb-4 text-sm font-normal text-red-400">
                                     <p>{error}</p>
                                 </div>
                             )

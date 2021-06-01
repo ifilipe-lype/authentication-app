@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
 import LoginForm from "../components/login-form";
 import SocialLogins from "../components/social-logins";
+import { makeApiCall } from "../helpers/api-helper";
 
 export default function SignUp() {
     const { theme, setTheme } = useTheme();
@@ -16,20 +17,14 @@ export default function SignUp() {
     async function handleSubmit(values) {
         setIsSubmting(true);
         setError("");
-
+        
         try {
-            const res = await fetch("/api/auth/signup", {
+            const data = await makeApiCall({
+                route: "auth/signin",
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(values)
+                body: values
             });
 
-            if (res.status === 500) throw new Error("Network error, checks your internet connection!");
-
-            let data = await res.json();
-            if (data.error) throw new Error(data.error);
             setIsSubmting(false);
         } catch (e) {
             setIsSubmting(false);
@@ -86,7 +81,7 @@ export default function SignUp() {
                                 </div>
                             )
                         }
-                        <LoginForm isSubmting={isSubmting} postSignUp={handleSubmit} />
+                        <LoginForm isSubmting={isSubmting} postLogin={handleSubmit} />
                     </div>
 
                     <footer className="flex flex-col items-center justify-center">
