@@ -60,7 +60,7 @@ export default function SignUp() {
                             </div>
                         )
                     }
-                    <SignUpForm handleSubmit={handleSubmit} />
+                    <SignUpForm postSignUp={handleSubmit} />
                 </div>
 
                 <footer className="flex flex-col items-center justify-center">
