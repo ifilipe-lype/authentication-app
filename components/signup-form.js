@@ -6,8 +6,8 @@ const schema = yup.object().shape({
         .required("Name field is required!"),
     email: yup.string().email("Invalid email provided!")
         .required("Email field is required"),
-    password: yup.string().min(8, "Password must be 8 chars long at minimum!")
-        .required("Password field's required!")
+    password: yup.string().min(8, "Password must be at least 8 chars long!")
+        .required("Password field is required!")
 });
 
 export default function SignUpForm({ postSignUp }) {
