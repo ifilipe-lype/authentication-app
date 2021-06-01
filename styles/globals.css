@@ -15,7 +15,7 @@ body {
 }
 
 .input-label-icon input {
-     @apply pl-2 text-gray-6 outline-none bg-transparent;
+     @apply pl-2 text-gray-6 dark:text-gray-5 outline-none bg-transparent;
 }
 
 .input-label-icon svg {
@@ -23,5 +23,5 @@ body {
 }
 
 .btn-submit {
-    @apply w-full mt-3 p-2 bg-blue-1 text-white rounded-lg;
+    @apply w-full mt-3 p-2 bg-blue-1 outline-none focus:outline-none text-white rounded-lg;
 }
