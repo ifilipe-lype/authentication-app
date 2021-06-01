@@ -9,23 +9,28 @@ export default function SignUp() {
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
 
-    function handleSubmit(values){
+    async function handleSubmit(values) {
         setIsSubmting(true);
         setError("");
 
-        const request = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if(Math.floor(Math.random() * 11) % 2) resolve("done");
-                reject(new Error("Some Error here!"));
-            }, 2500)
-        });
+        try {
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            });
 
-        request.then((result) => {
+            if(res.status === 500) throw new Error("Network error, checks your internet connection!");
+
+            let data = await res.json();
+            if(data.error) throw new Error(data.error);
             setIsSubmting(false);
-        }).catch(e => {
+        } catch (e) {
             setIsSubmting(false);
             setError(e.message);
-        })
+        }
     }
 
     useEffect(() => {
