@@ -1,3 +1,5 @@
+import Link  from "next/link";
+
 import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
 import SignUpForm from "../components/signup-form";
@@ -112,7 +114,7 @@ export default function SignUp() {
                     </div>
                     <span className="text-sm text-gray-3">
                         Already a member ?
-                                <a href="" className="text-blue-1"> Login</a>
+                        <Link href="/login"><a className="text-blue-1"> Login</a></Link>
                     </span>
                 </footer>
             </section>
