@@ -7,9 +7,30 @@ export default function SignUp() {
     const [isDark, setIsDark] = useState(false);
 
     const [error, setError] = useState("");
+    const [isSubmting, setIsSubmting] = useState(false);
 
-    function handleSubmit(values){
-        console.log(values)
+    async function handleSubmit(values) {
+        setIsSubmting(true);
+        setError("");
+
+        try {
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            });
+
+            if(res.status === 500) throw new Error("Network error, checks your internet connection!");
+
+            let data = await res.json();
+            if(data.error) throw new Error(data.error);
+            setIsSubmting(false);
+        } catch (e) {
+            setIsSubmting(false);
+            setError(e.message);
+        }
     }
 
     useEffect(() => {
@@ -60,7 +81,7 @@ export default function SignUp() {
                             </div>
                         )
                     }
-                    <SignUpForm postSignUp={handleSubmit} />
+                    <SignUpForm isSubmting={isSubmting} postSignUp={handleSubmit} />
                 </div>
 
                 <footer className="flex flex-col items-center justify-center">
