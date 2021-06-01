@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
 import LoginForm from "../components/login-form";
+import SocialLogins from "../components/social-logins";
 
 export default function SignUp() {
     const { theme, setTheme } = useTheme();
@@ -91,28 +92,7 @@ export default function SignUp() {
                     <footer className="flex flex-col items-center justify-center">
                         <span className="text-sm text-gray-3">or continue with these social profile</span>
                         <div className="mt-5">
-                            <ul className="flex items-center mb-3">
-                                <li className="mr-5">
-                                    <button className="outline-none focus:outline-none">
-                                        <img src="/Google.svg" />
-                                    </button>
-                                </li>
-                                <li className="mr-5">
-                                    <button className="outline-none focus:outline-none">
-                                        <img src="/Facebook.svg" />
-                                    </button>
-                                </li>
-                                <li className="mr-5">
-                                    <button className="outline-none focus:outline-none">
-                                        <img src="/Twitter.svg" />
-                                    </button>
-                                </li>
-                                <li className="mr-5">
-                                    <button className="outline-none focus:outline-none">
-                                        <img src="/Github.svg" />
-                                    </button>
-                                </li>
-                            </ul>
+                            <SocialLogins />
                         </div>
                         <span className="text-sm text-gray-3">
                             Don't have an account yet ?
