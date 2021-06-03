@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { useState } from "react";
-import { makeApiCall } from "../helpers/api-helper";
+import { signUp } from "../helpers/api-helper";
 
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import SignUpForm from "../components/signup-form";
@@ -18,11 +18,10 @@ export default function SignUp() {
         setError("");
 
         try {
-            const data = await makeApiCall({
-                method: "POST",
-                route: "auth/signup",
-                body: values
-            });
+            const token = await signUp(values);
+
+            // Store the token in browser.
+            localStorage.setItem("token", token);
 
             setIsSubmting(false);
         } catch (e) {

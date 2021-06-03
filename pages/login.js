@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from 'next-themes';
 import LoginForm from "../components/login-form";
 import SocialLogins from "../components/social-logins";
-import { makeApiCall } from "../helpers/api-helper";
+import { signIn } from "../helpers/api-helper";
 
 export default function SignUp() {
     const { theme, setTheme } = useTheme();
@@ -13,16 +13,15 @@ export default function SignUp() {
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
 
-    async function handleSubmit(values) {
+    async function handleSubmit({ email, password}) {
         setIsSubmting(true);
         setError("");
         
         try {
-            const data = await makeApiCall({
-                route: "auth/signin",
-                method: "POST",
-                body: values
-            });
+            const token = await signIn({ email, password});
+
+            // Store the token in browser.
+            localStorage.setItem("token", token);
 
             setIsSubmting(false);
         } catch (e) {
