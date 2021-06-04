@@ -2,13 +2,14 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { useState } from "react";
-import { makeApiCall } from "../helpers/api-helper";
+import { useAuth } from "../hooks/useAuth";
 
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import SignUpForm from "../components/signup-form";
 import SocialLogins from "../components/social-logins";
 
 export default function SignUp() {
+    const auth = useAuth();
 
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
@@ -18,13 +19,7 @@ export default function SignUp() {
         setError("");
 
         try {
-            const data = await makeApiCall({
-                method: "POST",
-                route: "auth/signup",
-                body: values
-            });
-
-            setIsSubmting(false);
+            await auth.signup(values);
         } catch (e) {
             setIsSubmting(false);
             setError(e.message);
