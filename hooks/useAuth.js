@@ -48,16 +48,19 @@ function useProvideAuth() {
         }
     };
 
-    const signup = ({email, password}) => {
-        return signUp({email, password})
-            .then((response) => {
-                setToken(response.token);
-                return response.token;
-            });
+    const signup = async ({ name, email, password }) => {
+        try {
+            const res = await signUp({ name, email, password });
+            setToken(res);
+            Router.replace("/");
+            return res;
+        } catch (e) {
+            throw e;
+        }
     };
 
     const signout = () => {
-        setToken(null);
+        setToken();
     };
 
     const loadStoreToken = async () => {
