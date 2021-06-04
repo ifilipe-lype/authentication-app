@@ -45,3 +45,8 @@ export async function signUp({ name, email, password }){
 
     return token;
 }
+
+export async function getUserProfile({ token }){
+    if(!token) return null;
+    return null;
+}
