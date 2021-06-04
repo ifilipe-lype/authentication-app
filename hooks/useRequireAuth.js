@@ -7,7 +7,8 @@ export function useRequireAuth(redirectTo = "/login") {
   const router = useRouter();
 
   useEffect(() => {
-    let token = JSON.parse(localStorage.getItem("token"));
+    let token = localStorage.getItem("token");
+    
     if (!token) {
       router.push(redirectTo);
     }

@@ -20,11 +20,11 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
     const Router = useRouter();
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState();
 
     useEffect(() => {
         if(window){
-            let storedToken = JSON.parse(localStorage.getItem("token"));
+            let storedToken = localStorage.getItem("token");
             setToken(storedToken);
         }
     }, [])
