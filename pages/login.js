@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Head from "next/head";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from 'next-themes';
 import LoginForm from "../components/login-form";
 import SocialLogins from "../components/social-logins";
-import { signIn } from "../helpers/api-helper";
+import { useAuth } from "../hooks/useAuth";
 
 export default function SignUp() {
+    const auth = useAuth();
     const { theme, setTheme } = useTheme();
 
     const [error, setError] = useState("");
@@ -18,12 +19,7 @@ export default function SignUp() {
         setError("");
         
         try {
-            const token = await signIn({ email, password});
-
-            // Store the token in browser.
-            localStorage.setItem("token", token);
-
-            setIsSubmting(false);
+            await auth.signin({ email, password });
         } catch (e) {
             setIsSubmting(false);
             setError(e.message);
