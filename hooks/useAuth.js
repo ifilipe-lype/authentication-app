@@ -60,7 +60,8 @@ function useProvideAuth() {
     };
 
     const signout = () => {
-        setToken();
+        setToken(null);
+        Router.replace("/login")
     };
 
     const loadStoreToken = async () => {
