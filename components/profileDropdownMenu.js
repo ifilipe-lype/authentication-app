@@ -7,8 +7,8 @@ export default function ProfileDropDownMenu({ photo, username }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
-        <div onClick={() => setDropdownOpen(!dropdownOpen)} className="relative cursor-pointer text-gray-6 dark:text-gray-5 transition">
-            <div className="flex items-center">
+        <div className="relative cursor-pointer text-gray-6 dark:text-gray-5 transition">
+            <div className="flex items-center" onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <div className="md:mr-2">
                     {
                         photo ? (
