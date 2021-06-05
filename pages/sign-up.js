@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/useAuth";
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import SignUpForm from "../components/signup-form";
 import SocialLogins from "../components/social-logins";
+import AppFooter from "../components/appFooter";
 
 export default function SignUp() {
     const auth = useAuth();
@@ -64,15 +65,9 @@ export default function SignUp() {
                         </span>
                     </footer>
                 </section>
-                <footer className="mt-6 flex items-center justify-between w-full max-w-md">
-                    <span className="text-sm text-gray-3">
-                        by <a className="hover:text-blue-1" href="https://twitter.com/ifilipe_lype">@ifilipe-lype</a>
-                    </span>
-
-                    <span className="text-sm text-gray-3">
-                        <a className="hover:text-gray-4" href="https://devchallenges.io">devChallenges.io</a>
-                    </span>
-                </footer>
+                <div className="max-w-md w-full">
+                    <AppFooter />
+                </div>
             </main>
         </>
     )

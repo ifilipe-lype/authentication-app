@@ -9,7 +9,7 @@ export function useRequireAuth(redirectTo = "/login") {
   useEffect(() => {
     let token = localStorage.getItem("token");
     
-    if (!token) {
+    if (token === "null") {
       router.push(redirectTo);
     }
   }, [auth, router]);

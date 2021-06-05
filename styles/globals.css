@@ -25,3 +25,19 @@ body {
 .btn-submit {
     @apply w-full mt-3 p-2 flex items-center justify-center bg-blue-1 outline-none focus:outline-none text-white rounded-lg;
 }
+
+.entry-info {
+    @apply md:px-6 lg:px-12 py-3 md:py-6 border-b flex items-center justify-between;
+}
+
+.entry-label {
+    @apply w-4/12 uppercase text-xs text-gray-3 dark:text-gray-5;
+}
+
+.entry-value {
+    @apply w-8/12 flex text-lg text-gray-6 dark:text-white items-center justify-end md:justify-start;
+}
+
+.shadow-in-dark {
+    box-shadow: 1px 1px 5px #BDBDBD;
+}
