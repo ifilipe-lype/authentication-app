@@ -63,7 +63,7 @@ function Profile() {
                 photo
               </div>
               <div className="entry-value">
-                <img src={user.photo} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" />
+                { user.photo ? <img src={user.photo} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" /> : "Go to edit page and add a profile picture."}
               </div>
             </div>
             <div className="entry-info">
