@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
-import { signIn, signUp } from "../helpers/api-helper";
+import { signIn, signUp, getUserProfile } from "../helpers/api-helper";
 import { useRouter } from "next/router";
 
 const authContext = createContext();
@@ -21,6 +21,7 @@ export const useAuth = () => {
 function useProvideAuth() {
     const Router = useRouter();
     const [token, setToken] = useState();
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         if(window){
@@ -59,21 +60,29 @@ function useProvideAuth() {
         }
     };
 
+    const getProfile = async () => {
+        try {
+            const user = await getUserProfile({ token });
+            setUser(user);
+            return user;
+        } catch (e) {
+            signout();
+        }
+    }
+
     const signout = () => {
         setToken(null);
+        setUser(null);
         Router.replace("/login")
     };
-
-    const loadStoreToken = async () => {
-        const token = localStorage.getItem("token");
-        setToken(token);
-    }
 
     // Return the user object and auth methods
     return {
         token,
+        user,
         signin,
         signup,
         signout,
+        getProfile,
     };
 }
