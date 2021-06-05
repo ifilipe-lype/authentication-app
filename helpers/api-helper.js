@@ -3,9 +3,11 @@ export async function makeApiCall({
     method,
     headers,
     body,
-    query,
-    params
 }){
+
+    let restObj = {};
+
+    if(body) restObj.body = JSON.stringify(body);
     
     const res = await fetch(`/api/${route}`, {
         method: method,
@@ -13,9 +15,7 @@ export async function makeApiCall({
             'Content-Type': 'application/json',
             ...headers,
         },
-        body: JSON.stringify(body),
-        query,
-        params
+        ...restObj
     });
 
     if (res.status === 500) throw new Error("Network error, checks your internet connection!");
@@ -47,6 +47,12 @@ export async function signUp({ name, email, password }){
 }
 
 export async function getUserProfile({ token }){
-    if(!token) return null;
-    return null;
+    const { user } = await makeApiCall({
+        route: "users/me",
+        headers: {
+            "x-auth-token": `Bearer ${token}`
+        },
+    });
+
+    return user;
 }

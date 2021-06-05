@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 body {
     @apply dark:bg-gray-dark;
@@ -31,13 +30,15 @@ body {
 }
 
 .entry-label {
-    @apply w-4/12 uppercase text-xs text-gray-3 dark:text-gray-5;
+    @apply w-4/12 uppercase flex items-center text-xs text-gray-3 dark:text-gray-5;
 }
 
 .entry-value {
-    @apply w-8/12 flex text-lg text-gray-6 dark:text-white items-center justify-end md:justify-start;
+    @apply w-8/12 flex leading-tight text-gray-6 dark:text-white items-center justify-end md:justify-start;
 }
 
 .shadow-in-dark {
     box-shadow: 1px 1px 5px #BDBDBD;
 }
+
+@tailwind utilities;

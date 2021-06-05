@@ -7,12 +7,12 @@ export default function ProfileDropDownMenu({ photo, username }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
-        <div onClick={() => setDropdownOpen(!dropdownOpen)} className="relative cursor-pointer text-gray-6 dark:text-gray-5 transition">
-            <div className="flex items-center">
+        <div className="relative cursor-pointer text-gray-6 dark:text-gray-5 transition">
+            <div className="flex items-center" onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <div className="md:mr-2">
                     {
                         photo ? (
-                            <img src="" alt="user avatar" className="hidden w-8 h-8 rounded-full object-cover" />
+                            <img src={photo} alt="user avatar" className="w-8 h-8 object-top rounded-full object-cover" />
                         ) : (
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none" /><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" /></svg>
@@ -27,7 +27,7 @@ export default function ProfileDropDownMenu({ photo, username }) {
                     </span>
                 </div>
             </div>
-            <nav className={`absolute right-0 w-48 mt-3 shadow-in-dark dark:text-gray-3 transition flex border rounded-lg p-3 dark:border-gray-6 outline-gray-5 ${dropdownOpen ? "block opacity-100" : "hidden opacity-0"}`}>
+            <nav className={`absolute right-0 w-48 mt-3 shadow-in-dark bg-white dark:bg-gray-dark dark:text-gray-3 transition flex border rounded-lg p-3 dark:border-gray-6 outline-gray-5 ${dropdownOpen ? "block opacity-100" : "hidden opacity-0"}`}>
                 <ul className="flex w-full flex-col text-xs">
                     <li className="flex rounded-lg p-2 items-center transition dark:hover:text-gray-5 hover:bg-gray-2 dark:hover:bg-transparent">
                         <span className="mr-2">
