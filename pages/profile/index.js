@@ -7,11 +7,18 @@ import ProfileDropDownMenu from "../../components/profileDropdownMenu";
 import ThemeSwitcher from '../../components/themeSwitcher';
 import AppLogo from '../../components/appLogo';
 import AppFooter from "../../components/appFooter";
+import { useEffect } from 'react';
 
 function Profile() {
   const auth = useRequireAuth();
 
-  if (!auth.token) return <LoadingPage />
+  const { user } = auth;
+
+  useEffect(async () => {
+    if(auth.token) await auth.getProfile();
+  }, [auth.token])
+
+  if (!auth.token || !auth.user) return <LoadingPage />
 
   return (
     <div>
@@ -29,7 +36,7 @@ function Profile() {
               <div className="mr-6 flex items-center">
                 <ThemeSwitcher />
               </div>
-              <ProfileDropDownMenu username="username" />
+              <ProfileDropDownMenu username={user.name} photo={user.photo} />
             </div>
           </div>
         </header>
@@ -56,7 +63,7 @@ function Profile() {
                 photo
               </div>
               <div className="entry-value">
-                <img src={""} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" />
+                <img src={user.photo} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" />
               </div>
             </div>
             <div className="entry-info">
@@ -64,15 +71,15 @@ function Profile() {
                 name
               </div>
               <div className="entry-value">
-                value
+                {user.name}
               </div>
             </div>
             <div className="entry-info">
               <div className="entry-label">
                 bio
               </div>
-              <div className="entry-value">
-                value
+              <div className="entry-value text-right md:text-left">
+                {user.bio}
               </div>
             </div>
 
@@ -81,7 +88,7 @@ function Profile() {
                 phone
               </div>
               <div className="entry-value">
-                value
+                {user.phone}
               </div>
             </div>
             <div className="entry-info border-none">
@@ -89,7 +96,7 @@ function Profile() {
                 email
               </div>
               <div className="entry-value">
-                value
+                {user.email}
               </div>
             </div>
           </section>
