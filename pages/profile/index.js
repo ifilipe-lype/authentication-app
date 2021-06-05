@@ -36,15 +36,15 @@ function Profile() {
 
         <div className="md:w-10/12 lg:w-8/12 py-8 w-full flex flex-col items-center">
           <div className="pb-8 mt-4 flex flex-col items-center">
-            <h2 className="text-4xl text-gray-6 dark:text-white">Profile Info</h2>
-            <h4 className="text-gray-3 mt-2 dark:text-gray-1">Basic info, like your name and photo</h4>
+            <h2 className="text-2xl md:text-4xl text-gray-6 dark:text-white">Profile Info</h2>
+            <h4 className="text-gray-3 text-sm md:text-base mt-2 dark:text-gray-1">Basic info, like your name and photo</h4>
           </div>
 
           <section className="w-full md:border rounded-lg">
             <header className="entry-info">
               <div>
                 <h2 className="text-xl text-gray-6 dark:text-white">Profile</h2>
-                <span className="text-gray-3 mt-2 dark:text-gray-5">Some info maybe visible to other people.</span>
+                <span className="text-gray-3 mt-2 leading-tight block text-sm dark:text-gray-5">Some info maybe visible to other people.</span>
               </div>
 
               <button className="outline-none rounded-lg text-gray-3 ml-2 text-sm dark:text-gray-5 focus:outline-none border text-center px-6 py-2">
@@ -56,7 +56,7 @@ function Profile() {
                 photo
               </div>
               <div className="entry-value">
-                <img src={""} alt="user's profile image" className="w-3/12 h-auto object-cover" />
+                <img src={""} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" />
               </div>
             </div>
             <div className="entry-info">
