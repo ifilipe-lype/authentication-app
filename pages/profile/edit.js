@@ -7,15 +7,18 @@ import ProfileDropDownMenu from "../../components/profileDropdownMenu";
 import ThemeSwitcher from '../../components/themeSwitcher';
 import AppLogo from '../../components/appLogo';
 import AppFooter from "../../components/appFooter";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import ProfileEditForm from "../../components/profile-edit-form";
 
-function Profile() {
+function EditProfile() {
     const auth = useRequireAuth();
 
     const { user } = auth;
 
+    async function updateProfile(values){
+        await auth.updateProfile(values);
+    }
 
     useEffect(async () => {
         if (auth.token) await auth.getProfile();
@@ -31,7 +34,7 @@ function Profile() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="container px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
+            <main className="container text-sm md:text-base px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
                 <header className="w-full py-2">
                     <div className="flex w-full items-center justify-between">
                         <AppLogo />
@@ -64,7 +67,7 @@ function Profile() {
                             </div>
                         </header>
                         
-                        <ProfileEditForm user={user} />
+                        <ProfileEditForm updateProfile={updateProfile} user={user} />
                     </section>
 
                     <AppFooter />
@@ -74,4 +77,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default EditProfile;
