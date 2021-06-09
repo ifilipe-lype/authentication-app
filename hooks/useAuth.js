@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
-import { signIn, signUp, getUserProfile } from "../helpers/api-helper";
+import { signIn, signUp, getUserProfile, updateUserProfile } from "../helpers/api-helper";
 import { useRouter } from "next/router";
 
 const authContext = createContext();
@@ -70,10 +70,22 @@ function useProvideAuth() {
         }
     }
 
+    const updateProfile = async (values) => {
+        try {
+            const user = await updateUserProfile({ values, token});
+            setUser(user);
+            Router.replace("/profile")
+
+            return user;
+        } catch (e) {
+            console.log("oh shit: ", e);
+        }
+    }
+
     const signout = () => {
         setToken(null);
         setUser(null);
-        Router.replace("/login")
+        Router.replace("/login");
     };
 
     // Return the user object and auth methods
@@ -84,5 +96,6 @@ function useProvideAuth() {
         signup,
         signout,
         getProfile,
+        updateProfile,
     };
 }
