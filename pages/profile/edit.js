@@ -45,10 +45,10 @@ function Profile() {
                 </header>
 
                 <div className="md:w-10/12 lg:w-8/12 py-8 w-full flex flex-col items-center">
-                    <div className="pb-8 mt-4 w-full">
+                    <div className="pb-8 mt-4 flex w-full">
                         <Link href="/profile">
                             <div class="text-blue-1 flex items-center cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                                 <span className="">Back</span>
