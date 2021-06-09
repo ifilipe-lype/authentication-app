@@ -22,7 +22,7 @@ body {
 }
 
 .btn-submit {
-    @apply w-full mt-3 p-2 flex items-center justify-center bg-blue-1 outline-none focus:outline-none text-white rounded-lg;
+    @apply mt-3 p-2 flex items-center justify-center bg-blue-1 outline-none focus:outline-none text-white rounded-lg;
 }
 
 .entry-info {
@@ -39,6 +39,13 @@ body {
 
 .shadow-in-dark {
     box-shadow: 1px 1px 5px #BDBDBD;
+}
+
+.form-group {
+    @apply md:px-6 lg:px-12 py-2 md:py-4 flex flex-col;
+}
+.form-group input, .form-group textarea {
+    @apply p-2 md:px-4 border border-gray-5 outline-none focus:outline-none dark:text-white rounded-lg bg-transparent;
 }
 
 @tailwind utilities;
