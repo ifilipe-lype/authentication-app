@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -6,29 +7,35 @@ const schema = yup.object().shape({
         .required("Name field is required!"),
     email: yup.string().email("Invalid email provided!")
         .required("Email field is required"),
-    password: yup.string().min(8, "Password must be at least 8 chars long!")
-        .required("Password field is required!"),
+    password: yup.string().min(8, "Password must be at least 8 chars long!"),
     phone: yup.string(),
     bio: yup.string(),
-    photo: yup.string()
+    photo: yup.string(),
 });
 
 export default function ProfileEditForm({
     user,
-    isSubmting,
-    putProfileEdit,
+    updateProfile,
 }) {
+
+    const [isSubmting, setIsSubmting] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             photo: user.photo,
             name: user.name,
             email: user.email,
-            password: user.password,
+            password: "",
             phone: user.phone,
             bio: user.bio,
         },
         validationSchema: schema,
-        onSubmit: (values) => putProfileEdit(values),
+        onSubmit: async (values) => {
+            setIsSubmting(true);
+            await updateProfile(values);
+
+            setIsSubmting(false);
+        },
         validateOnChange: true
     });
 
@@ -40,6 +47,7 @@ export default function ProfileEditForm({
         handleBlur,
         handleSubmit
     } = formik;
+
 
     return (
         <form onSubmit={handleSubmit} className="text-gray-6 md:w-8/12 dark:text-gray-5">
@@ -56,18 +64,20 @@ export default function ProfileEditForm({
                 </label>
                 <span className="ml-6 uppercase text-gray-6 text-sm dark:text-gray-5">change photo</span>
             </div>
+            
             <div className="form-group">
                 <label className="mb-1">
-                    Photo's link
+                    Photo's url
                 </label>
                 <input
                     id="photo"
+                    name="photo"
                     value={values.photo}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    type="text" placeholder="photo url"
+                    type="text" placeholder="place an image url"
                 />
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.photo && errors.photo}</small>
             </div>
             <div className="form-group">
                 <label className="mb-1">
@@ -80,7 +90,7 @@ export default function ProfileEditForm({
                     onBlur={handleBlur}
                     type="text" placeholder="name"
                 />
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.name && errors.name}</small>
             </div>
             <div className="form-group">
                 <label className="mb-1">
@@ -93,7 +103,7 @@ export default function ProfileEditForm({
                     onBlur={handleBlur}
                     type="text" placeholder="bio"
                 ></textarea>
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.bio && errors.bio}</small>
             </div>
             <div className="form-group">
                 <label className="mb-1">
@@ -106,7 +116,7 @@ export default function ProfileEditForm({
                     onBlur={handleBlur}
                     type="string" placeholder="phone"
                 />
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.phone && errors.phone}</small>
             </div>
             <div className="form-group">
                 <label className="mb-1">
@@ -119,7 +129,7 @@ export default function ProfileEditForm({
                     onBlur={handleBlur}
                     type="string" placeholder="email"
                 />
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.email && errors.email}</small>
             </div>
             <div className="form-group">
                 <label className="mb-1">
@@ -132,7 +142,7 @@ export default function ProfileEditForm({
                     onBlur={handleBlur}
                     type="password" placeholder="new password"
                 />
-                <small className="text-red-400">{touched.name && errors.name}</small>
+                <small className="text-red-400 mt-1">{touched.password && errors.password}</small>
             </div>
             <div className="form-group flex-row">
                 <button type="submit" className="btn-submit w-full md:w-auto px-6 md:px-8">
@@ -144,7 +154,7 @@ export default function ProfileEditForm({
                     )}
                     <span>
                         Save
-                </span>
+                    </span>
                 </button>
             </div>
         </form>
