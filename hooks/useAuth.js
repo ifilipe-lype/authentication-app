@@ -24,14 +24,14 @@ function useProvideAuth() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        if(window){
+        if (window) {
             let storedToken = localStorage.getItem("token");
             setToken(storedToken);
         }
     }, [])
 
     useEffect(() => {
-        if(window){
+        if (window) {
             localStorage.setItem("token", token);
         }
     }, [token])
@@ -71,15 +71,9 @@ function useProvideAuth() {
     }
 
     const updateProfile = async (values) => {
-        try {
-            const user = await updateUserProfile({ values, token});
-            setUser(user);
-            Router.replace("/profile")
-
-            return user;
-        } catch (e) {
-            console.log("oh shit: ", e);
-        }
+        const user = await updateUserProfile({ values, token });
+        setUser(user);
+        Router.replace("/profile")
     }
 
     const signout = () => {
