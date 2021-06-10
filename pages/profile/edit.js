@@ -7,17 +7,24 @@ import ProfileDropDownMenu from "../../components/profileDropdownMenu";
 import ThemeSwitcher from '../../components/themeSwitcher';
 import AppLogo from '../../components/appLogo';
 import AppFooter from "../../components/appFooter";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import ProfileEditForm from "../../components/profile-edit-form";
 
 function EditProfile() {
     const auth = useRequireAuth();
+    const [error, setError] = useState("");
+
 
     const { user } = auth;
 
-    async function updateProfile(values){
-        await auth.updateProfile(values);
+    async function updateProfile(values) {
+        setError("");
+        try {
+            await auth.updateProfile(values);
+        } catch (e) {
+            setError(e.message);
+        }
     }
 
     useEffect(async () => {
@@ -66,8 +73,17 @@ function EditProfile() {
                                 <span className="text-gray-3 mt-2 leading-tight block text-sm dark:text-gray-5">Changes will be reflected to every services</span>
                             </div>
                         </header>
-                        
+
                         <ProfileEditForm updateProfile={updateProfile} user={user} />
+                        <div className="">
+                            {
+                                error && (
+                                    <div className="form-group text-sm font-normal text-red-400">
+                                        <p>{error}</p>
+                                    </div>
+                                )
+                            }
+                        </div>
                     </section>
 
                     <AppFooter />
