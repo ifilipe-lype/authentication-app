@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
-import { signIn, signUp, getUserProfile } from "../helpers/api-helper";
+import { signIn, signUp, getUserProfile, updateUserProfile } from "../helpers/api-helper";
 import { useRouter } from "next/router";
 
 const authContext = createContext();
@@ -24,14 +24,14 @@ function useProvideAuth() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        if(window){
+        if (window) {
             let storedToken = localStorage.getItem("token");
             setToken(storedToken);
         }
     }, [])
 
     useEffect(() => {
-        if(window){
+        if (window) {
             localStorage.setItem("token", token);
         }
     }, [token])
@@ -42,7 +42,7 @@ function useProvideAuth() {
         try {
             const res = await signIn({ email, password });
             setToken(res);
-            Router.replace("/");
+            Router.replace("/profile");
             return res;
         } catch (e) {
             throw e;
@@ -53,7 +53,7 @@ function useProvideAuth() {
         try {
             const res = await signUp({ name, email, password });
             setToken(res);
-            Router.replace("/");
+            Router.replace("/profile");
             return res;
         } catch (e) {
             throw e;
@@ -70,10 +70,16 @@ function useProvideAuth() {
         }
     }
 
+    const updateProfile = async (values) => {
+        const user = await updateUserProfile({ values, token });
+        setUser(user);
+        Router.replace("/profile")
+    }
+
     const signout = () => {
         setToken(null);
         setUser(null);
-        Router.replace("/login")
+        Router.replace("/login");
     };
 
     // Return the user object and auth methods
@@ -84,5 +90,6 @@ function useProvideAuth() {
         signup,
         signout,
         getProfile,
+        updateProfile,
     };
 }

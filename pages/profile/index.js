@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 function Profile() {
   const auth = useRequireAuth();
 
-  const { user } = auth;
+  const { user, token } = auth;
 
   useEffect(async () => {
-    if(auth.token) await auth.getProfile();
-  }, [auth.token])
+    if (token && !user) await auth.getProfile();
+  }, [token, user])
 
-  if (!auth.token || !auth.user) return <LoadingPage />
+  if (!token || !user) return <LoadingPage />
 
   return (
     <div>
@@ -28,7 +28,7 @@ function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
+      <main className="container text-sm md:text-base px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
         <header className="w-full py-2">
           <div className="flex w-full items-center justify-between">
             <AppLogo />
@@ -54,16 +54,18 @@ function Profile() {
                 <span className="text-gray-3 mt-2 leading-tight block text-sm dark:text-gray-5">Some info maybe visible to other people.</span>
               </div>
 
-              <button className="outline-none rounded-lg text-gray-3 ml-2 text-sm dark:text-gray-5 focus:outline-none border text-center px-6 py-2">
-                <Link href="/profile/edit">edit</Link>
-              </button>
+              <Link href="/profile/edit">
+                <button className="outline-none rounded-lg text-gray-3 ml-2 text-sm dark:text-gray-5 focus:outline-none border text-center px-6 py-2">
+                  edit
+                </button>
+              </Link>
             </header>
             <div className="entry-info">
               <div className="entry-label">
                 photo
               </div>
               <div className="entry-value">
-                { user.photo ? <img src={user.photo} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" /> : "Go to edit page and add a profile picture."}
+                {user.photo ? <img src={user.photo} alt="user's profile image" className="w-3/12 text-xs h-auto object-cover" /> : "Go to edit page and add a profile picture."}
               </div>
             </div>
             <div className="entry-info">

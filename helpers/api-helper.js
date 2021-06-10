@@ -56,3 +56,18 @@ export async function getUserProfile({ token }){
 
     return user;
 }
+
+export async function updateUserProfile({ token, values }){
+    const { updatedUser } = await makeApiCall({
+        route: "users/me",
+        headers: {
+            "x-auth-token": `Bearer ${token}`
+        },
+        method: "PUT",
+        body: {
+            ...values
+        }
+    });
+
+    return updatedUser;
+}

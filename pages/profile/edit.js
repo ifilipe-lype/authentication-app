@@ -11,17 +11,28 @@ import { useEffect, useState } from 'react';
 
 import ProfileEditForm from "../../components/profile-edit-form";
 
-function Profile() {
+function EditProfile() {
     const auth = useRequireAuth();
+    const [error, setError] = useState("");
 
-    const { user } = auth;
 
+    const { user, token } = auth;
 
+    async function updateProfile(values) {
+        setError("");
+        try {
+            await auth.updateProfile(values);
+        } catch (e) {
+            setError(e.message);
+        }
+    }
+
+    
     useEffect(async () => {
-        if (auth.token) await auth.getProfile();
-    }, [auth.token])
-
-    if (!auth.token || !auth.user) return <LoadingPage />
+        if (token && !user) await auth.getProfile();
+    }, [token, user])
+    
+    if (!token || !user) return <LoadingPage />
 
     return (
         <div>
@@ -31,7 +42,7 @@ function Profile() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="container px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
+            <main className="container text-sm md:text-base px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
                 <header className="w-full py-2">
                     <div className="flex w-full items-center justify-between">
                         <AppLogo />
@@ -45,10 +56,10 @@ function Profile() {
                 </header>
 
                 <div className="md:w-10/12 lg:w-8/12 py-8 w-full flex flex-col items-center">
-                    <div className="pb-8 mt-4 w-full">
+                    <div className="md:mb-4 flex w-full">
                         <Link href="/profile">
                             <div class="text-blue-1 flex items-center cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                                 <span className="">Back</span>
@@ -63,8 +74,17 @@ function Profile() {
                                 <span className="text-gray-3 mt-2 leading-tight block text-sm dark:text-gray-5">Changes will be reflected to every services</span>
                             </div>
                         </header>
-                        
-                        <ProfileEditForm user={user} />
+
+                        <ProfileEditForm updateProfile={updateProfile} user={user} />
+                        <div className="">
+                            {
+                                error && (
+                                    <div className="form-group text-sm font-normal text-red-400">
+                                        <p>{error}</p>
+                                    </div>
+                                )
+                            }
+                        </div>
                     </section>
 
                     <AppFooter />
@@ -74,4 +94,4 @@ function Profile() {
     )
 }
 
-export default Profile;
+export default EditProfile;
