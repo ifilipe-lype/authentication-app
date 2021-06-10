@@ -16,7 +16,7 @@ function EditProfile() {
     const [error, setError] = useState("");
 
 
-    const { user } = auth;
+    const { user, token } = auth;
 
     async function updateProfile(values) {
         setError("");
@@ -27,11 +27,12 @@ function EditProfile() {
         }
     }
 
+    
     useEffect(async () => {
-        if (auth.token) await auth.getProfile();
-    }, [auth.token])
-
-    if (!auth.token || !auth.user) return <LoadingPage />
+        if (token && !user) await auth.getProfile();
+    }, [token, user])
+    
+    if (!token || !user) return <LoadingPage />
 
     return (
         <div>

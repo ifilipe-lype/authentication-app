@@ -12,13 +12,13 @@ import { useEffect } from 'react';
 function Profile() {
   const auth = useRequireAuth();
 
-  const { user } = auth;
+  const { user, token } = auth;
 
   useEffect(async () => {
-    if (auth.token) await auth.getProfile();
-  }, [auth.token])
+    if (token && !user) await auth.getProfile();
+  }, [token, user])
 
-  if (!auth.token || !auth.user) return <LoadingPage />
+  if (!token || !user) return <LoadingPage />
 
   return (
     <div>
