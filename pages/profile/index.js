@@ -28,7 +28,7 @@ function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
+      <main className="container text-sm md:text-base px-4 lg:px-0 mx-auto h-screen flex flex-col items-center w-full">
         <header className="w-full py-2">
           <div className="flex w-full items-center justify-between">
             <AppLogo />
