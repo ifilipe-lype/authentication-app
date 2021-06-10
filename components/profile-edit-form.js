@@ -51,7 +51,7 @@ export default function ProfileEditForm({
 
     return (
         <form onSubmit={handleSubmit} className="text-gray-6 md:w-8/12 dark:text-gray-5">
-            <div className="hidden form-group flex flex-row items-center">
+            {/* <div className="form-group flex flex-row items-center">
                 <label className="relative block w-16 h-16 transition text-gray-5 hover:text-white cursor-pointer rounded overflow-hidden">
                     <img src={values.photo} className="w-16 h-16 object-cover object-top" alt="user's photo" />
                     <div className="bg-gray-dark bg-opacity-50 flex items-center justify-center h-full w-full absolute inset-0">
@@ -63,7 +63,7 @@ export default function ProfileEditForm({
                     <input type="file" className="sr-only" />
                 </label>
                 <span className="ml-6 uppercase text-gray-6 text-sm dark:text-gray-5">change photo</span>
-            </div>
+            </div> */}
             
             <div className="form-group">
                 <label className="mb-1">
