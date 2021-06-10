@@ -42,7 +42,7 @@ function useProvideAuth() {
         try {
             const res = await signIn({ email, password });
             setToken(res);
-            Router.replace("/");
+            Router.replace("/profile");
             return res;
         } catch (e) {
             throw e;
@@ -53,7 +53,7 @@ function useProvideAuth() {
         try {
             const res = await signUp({ name, email, password });
             setToken(res);
-            Router.replace("/");
+            Router.replace("/profile");
             return res;
         } catch (e) {
             throw e;
