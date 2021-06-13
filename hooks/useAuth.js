@@ -70,8 +70,8 @@ function useProvideAuth() {
         }
     }
 
-    const updateProfile = async (values) => {
-        const user = await updateUserProfile({ values, token });
+    const updateProfile = async (multipartFormData) => {
+        const user = await updateUserProfile({ multipartFormData, token });
         setUser(user);
         Router.replace("/profile")
     }
