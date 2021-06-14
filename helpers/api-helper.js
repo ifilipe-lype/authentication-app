@@ -57,17 +57,21 @@ export async function getUserProfile({ token }){
     return user;
 }
 
-export async function updateUserProfile({ token, values }){
-    const { updatedUser } = await makeApiCall({
-        route: "users/me",
-        headers: {
-            "x-auth-token": `Bearer ${token}`
-        },
+export async function updateUserProfile({ token, multipartFormData }){
+
+    const result = await fetch("/api/users/me", {
         method: "PUT",
-        body: {
-            ...values
-        }
+        headers: {
+            "x-auth-token": `Bearer ${token}`,
+        },
+        body: multipartFormData
     });
 
-    return updatedUser;
+    if (result.status === 500) throw new Error("Network error, checks your internet connection!");
+
+    const data = await result.json();
+    if (data.error) throw new Error(data.error);
+
+    return data.updatedUser;
+    
 }

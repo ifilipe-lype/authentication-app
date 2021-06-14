@@ -18,10 +18,10 @@ function EditProfile() {
 
     const { user, token } = auth;
 
-    async function updateProfile(values) {
+    async function updateProfile(multipartFormData) {
         setError("");
         try {
-            await auth.updateProfile(values);
+            await auth.updateProfile(multipartFormData);
         } catch (e) {
             setError(e.message);
         }
