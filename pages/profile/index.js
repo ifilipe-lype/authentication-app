@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from "next/link";
-import { useRequireAuth } from "../../hooks/useRequireAuth";
+import { useRequireAuth } from "../../hooks/useAuth";
 import LoadingPage from "../../components/loading-page";
 
 import ProfileDropDownMenu from "../../components/profileDropdownMenu";
