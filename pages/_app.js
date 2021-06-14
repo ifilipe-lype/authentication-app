@@ -7,7 +7,7 @@ import { ProvideAuth } from "../hooks/useAuth";
 function MyApp({ Component, pageProps }) {
   return (
     <ProvideAuth>
-      <ThemeProvider attribute="class">
+      <ThemeProvider defaultTheme="light" attribute="class">
         <Head>
           <meta name="description" content="An authentication app example" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
