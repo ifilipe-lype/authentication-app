@@ -20,7 +20,7 @@ export default function ProfileEditForm({
 }) {
 
     const [isSubmting, setIsSubmting] = useState(false);
-    const [thumb, setThumb] = useState(null);
+    const [thumb, setThumb] = useState(user.photo);
 
     const [fileInputError, setFileInputError] = useState("");
 
@@ -116,7 +116,7 @@ export default function ProfileEditForm({
                 <small className="text-red-400 mt-1">{fileInputError}</small>
                 <div>
                     {
-                        thumb && (
+                        values.imageFile && (
                             <button type="button" onClick={clearFileInput} className="text-red-400 w-auto text-xs bg-red-100 dark:bg-transparent p-1 rounded-lg outline-none focus:outline-none mt-1">
                                 clear selected image
                             </button>
