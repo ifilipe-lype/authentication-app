@@ -30,7 +30,7 @@ export default function SignUp() {
     return (
         <>
             <Head>
-                <title>Auth App - Register</title>
+                <title>Auth App - Sign up</title>
             </Head>
             <main className="container px-5 mx-auto lg:px-0 md:w-full flex flex-col py-8 items-center justify-center min-h-screen w-full">
                 <section className="max-w-md w-full rounded-2xl md:py-6 md:px-5 lg:py-12 lg:px-10 md:border">
