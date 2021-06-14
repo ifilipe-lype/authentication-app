@@ -37,8 +37,6 @@ function useProvideAuth() {
         }
     }, [token])
 
-    // Wrap any Firebase methods we want to use making sure ...
-    // ... to save the user to state.
     const signin = async ({ email, password }) => {
         try {
             const res = await signIn({ email, password });
