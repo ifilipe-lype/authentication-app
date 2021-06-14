@@ -26,6 +26,7 @@ function useProvideAuth() {
     useEffect(() => {
         if (window) {
             let storedToken = localStorage.getItem("token");
+            storedToken = storedToken === "null" ? JSON.parse(storedToken) : storedToken;
             setToken(storedToken);
         }
     }, [])
@@ -108,3 +109,16 @@ export function useRequireAuth(redirectTo = "/login") {
   
     return auth;
   }
+
+export function useRedirectIfAuth(redirectTo = "/profile"){
+    const auth = useAuth();
+    const router = useRouter();
+  
+    useEffect(() => {
+      if (auth && auth.token) {
+        router.push(redirectTo);
+      }
+    }, [auth]);
+  
+    return auth;
+}
