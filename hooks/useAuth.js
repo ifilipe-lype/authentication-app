@@ -93,3 +93,18 @@ function useProvideAuth() {
         updateProfile,
     };
 }
+
+export function useRequireAuth(redirectTo = "/login") {
+    const auth = useAuth();
+    const router = useRouter();
+  
+    useEffect(() => {
+      let token = localStorage.getItem("token");
+      
+      if (token === "null") {
+        router.push(redirectTo);
+      }
+    }, [auth, router]);
+  
+    return auth;
+  }
