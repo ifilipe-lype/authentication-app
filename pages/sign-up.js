@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useRedirectIfAuth } from "../hooks/useAuth";
 
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import SignUpForm from "../components/signup-form";
@@ -10,7 +10,7 @@ import SocialLogins from "../components/social-logins";
 import AppFooter from "../components/appFooter";
 
 export default function SignUp() {
-    const auth = useAuth();
+    const auth = useRedirectIfAuth();
 
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
