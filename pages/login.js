@@ -7,11 +7,11 @@ import { useTheme } from 'next-themes';
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import LoginForm from "../components/login-form";
 import SocialLogins from "../components/social-logins";
-import { useAuth } from "../hooks/useAuth";
+import { useRedirectIfAuth } from "../hooks/useAuth";
 import AppFooter from "../components/appFooter";
 
 export default function SignUp() {
-    const auth = useAuth();
+    const auth = useRedirectIfAuth();
     const { theme, setTheme } = useTheme();
 
     const [error, setError] = useState("");
