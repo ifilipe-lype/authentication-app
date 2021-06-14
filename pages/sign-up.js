@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useRedirectIfAuth } from "../hooks/useAuth";
 
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import SignUpForm from "../components/signup-form";
@@ -10,7 +10,7 @@ import SocialLogins from "../components/social-logins";
 import AppFooter from "../components/appFooter";
 
 export default function SignUp() {
-    const auth = useAuth();
+    const auth = useRedirectIfAuth();
 
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
@@ -30,7 +30,7 @@ export default function SignUp() {
     return (
         <>
             <Head>
-                <title>Auth App - Register</title>
+                <title>Auth App - Sign up</title>
             </Head>
             <main className="container px-5 mx-auto lg:px-0 md:w-full flex flex-col py-8 items-center justify-center min-h-screen w-full">
                 <section className="max-w-md w-full rounded-2xl md:py-6 md:px-5 lg:py-12 lg:px-10 md:border">

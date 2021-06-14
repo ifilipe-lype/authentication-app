@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from "next/router";
 
-import { useRequireAuth } from "../hooks/useRequireAuth";
+import { useRequireAuth } from "../hooks/useAuth";
 import LoadingPage from "../components/loading-page";
 
 

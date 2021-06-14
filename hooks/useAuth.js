@@ -26,6 +26,7 @@ function useProvideAuth() {
     useEffect(() => {
         if (window) {
             let storedToken = localStorage.getItem("token");
+            storedToken = storedToken === "null" ? JSON.parse(storedToken) : storedToken;
             setToken(storedToken);
         }
     }, [])
@@ -36,8 +37,6 @@ function useProvideAuth() {
         }
     }, [token])
 
-    // Wrap any Firebase methods we want to use making sure ...
-    // ... to save the user to state.
     const signin = async ({ email, password }) => {
         try {
             const res = await signIn({ email, password });
@@ -92,4 +91,30 @@ function useProvideAuth() {
         getProfile,
         updateProfile,
     };
+}
+
+export function useRequireAuth(redirectTo = "/login") {
+    const auth = useAuth();
+    const router = useRouter();
+  
+    useEffect(() => {
+      if (auth && !auth.token) {
+        router.push(redirectTo);
+      }
+    }, [auth]);
+  
+    return auth;
+  }
+
+export function useRedirectIfAuth(redirectTo = "/profile"){
+    const auth = useAuth();
+    const router = useRouter();
+  
+    useEffect(() => {
+      if (auth && auth.token) {
+        router.push(redirectTo);
+      }
+    }, [auth]);
+  
+    return auth;
 }
