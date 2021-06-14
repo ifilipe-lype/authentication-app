@@ -2,7 +2,6 @@ import Link from "next/link";
 import Head from "next/head";
 
 import { useState } from "react";
-import { useTheme } from 'next-themes';
 
 import LogoAndThemeSwitcher from "../components/logoAndThemeSwitcher";
 import LoginForm from "../components/login-form";
@@ -12,7 +11,6 @@ import AppFooter from "../components/appFooter";
 
 export default function SignUp() {
     const auth = useRedirectIfAuth();
-    const { theme, setTheme } = useTheme();
 
     const [error, setError] = useState("");
     const [isSubmting, setIsSubmting] = useState(false);
@@ -28,12 +26,6 @@ export default function SignUp() {
             setError(e.message);
         }
     }
-
-    function toggleTheme() {
-        setTheme(!isDark() ? "dark" : "light");
-    }
-
-    function isDark(){ return theme === "dark"; }
 
     return (
         <>
