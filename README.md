@@ -72,7 +72,13 @@ Your can view a running demo app <a href="https://authentication-app-lype.vercel
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
+- Sign up
+- Login
+- Profile Update
+- Profile picture uploading
+- Profile picture setting by URL
+
+> This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
 ## How To Use
 
